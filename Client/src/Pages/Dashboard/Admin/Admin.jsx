@@ -13,7 +13,7 @@ const Admin = () => {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Sidebar */}
-      <aside className="w-full md:w-64 bg-gray-100 p-6">
+      <aside className="w-full md:w-64  p-6">
         <h2 className="text-xl font-bold mb-6 text-center">Admin Dashboard</h2>
         <nav className="flex flex-col gap-3">
           {/* <NavLink
@@ -63,6 +63,14 @@ const Admin = () => {
             }
           >
             Feature Donations
+          </NavLink>
+          <NavLink
+            to="over-view-admin"
+            className={({ isActive }) =>
+              isActive ? "btn btn-info w-full" : "btn btn-outline w-full"
+            }
+          >
+            Overview
           </NavLink>
         </nav>
       </aside>

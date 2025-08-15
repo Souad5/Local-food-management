@@ -18,7 +18,7 @@ const DonationDetails = () => {
   const { data: donation = {}, refetch } = useQuery({
     queryKey: ["donation", id],
     queryFn: async () => {
-      const res = await axios.get(`https://assignment-12-xi-neon.vercel.app/donations/${id}`);
+      const res = await axios.get(`http://localhost:5000/donations/${id}`);
       return res.data;
     },
   });
@@ -26,7 +26,7 @@ const DonationDetails = () => {
   const { data: reviews = [] } = useQuery({
     queryKey: ["reviews", id],
     queryFn: async () => {
-      const res = await axios.get(`https://assignment-12-xi-neon.vercel.app/api/reviews/${id}`);
+      const res = await axios.get(`http://localhost:5000/api/reviews/${id}`);
       return res.data;
     },
   });
@@ -47,7 +47,7 @@ const DonationDetails = () => {
     
     try {
       const res = await axios.post(
-        "https://assignment-12-xi-neon.vercel.app/api/favorites",
+        "http://localhost:5000/api/favorites",
         favoriteData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -61,7 +61,7 @@ const DonationDetails = () => {
 
   const handleConfirmPickup = async () => {
     try {
-      await axios.patch(`https://assignment-12-xi-neon.vercel.app/donations/${id}`, {
+      await axios.patch(`http://localhost:5000/donations/${id}`, {
         status: "Picked Up",
       });
       Swal.fire("Confirmed", "Pickup marked as complete", "success");
@@ -159,7 +159,7 @@ const DonationDetails = () => {
                   pickupTime: e.target.pickupTime.value,
                   status: "Pending",
                 };
-                await axios.post("https://assignment-12-xi-neon.vercel.app/api/requests", data);
+                await axios.post("http://localhost:5000/api/requests", data);
                 Swal.fire(
                   "Request Sent",
                   "Awaiting restaurant response",
@@ -233,7 +233,7 @@ const DonationDetails = () => {
                   rating: e.target.rating.value,
                   time: new Date(),
                 };
-                await axios.post("https://assignment-12-xi-neon.vercel.app/api/reviews", data);
+                await axios.post("http://localhost:5000/api/reviews", data);
                 Swal.fire(
                   "Thanks!",
                   "Your review has been submitted",

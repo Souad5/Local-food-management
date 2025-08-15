@@ -65,7 +65,7 @@ const AddDonation = () => {
         createdAt: new Date(),
       };
       // Save donation
-      await axios.post("https://assignment-12-xi-neon.vercel.app/donations", donation);
+      await axios.post("http://localhost:5000/donations", donation);
 
       toast.success("Donation added successfully!");
       setForm({
@@ -140,7 +140,7 @@ const AddDonation = () => {
       {/* Readonly restaurant name */}
       <input
         type="text"
-        className="input input-bordered w-full bg-gray-100"
+        className="input input-bordered w-full "
         readOnly
         value={ user.displayName ||"Unknown Restaurant"}
         placeholder="Restaurant Name"
@@ -151,7 +151,7 @@ const AddDonation = () => {
         type="email"
         readOnly
         value={user.email}
-        className="input input-bordered w-full bg-gray-100"
+        className="input input-bordered w-full "
         placeholder="Restaurant Email"
       />
 

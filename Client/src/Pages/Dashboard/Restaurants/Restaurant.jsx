@@ -12,7 +12,7 @@ const RestaurantDashboard = () => {
   return (
     <div className="min-h-screen flex flex-col  md:flex-row">
       {/* Sidebar */}
-      <aside className="w-full md:w-60 bg-gray-100 p-6 flex flex-col justify-between">
+      <aside className="w-full md:w-60 p-6 flex flex-col justify-between">
         <div>
           <h2 className="font-bold text-lg mb-6 text-center">Restaurant Dashboard</h2>
           <nav className="flex flex-col gap-3">

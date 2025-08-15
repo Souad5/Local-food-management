@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="footer flex flex-col sm:flex-row justify-between items-center bg-neutral text-neutral-content p-4">
+    <footer className="footer flex flex-col sm:flex-row justify-between dark:bg-gray-900/80 items-center  text-neutral-content p-4">
       {/* Left side */}
       <aside className="flex items-center gap-2">
         <svg

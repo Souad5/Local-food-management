@@ -6,7 +6,7 @@ const ManageUsers = () => {
 
   // Fetch all users on component mount
   const fetchUsers = () => {
-    fetch("https://assignment-12-xi-neon.vercel.app/users")  // Adjust API endpoint if needed
+    fetch("http://localhost:5000/users")  // Adjust API endpoint if needed
       .then((res) => res.json())
       .then((data) => setUsers(data))
       .catch(() => Swal.fire("Error", "Failed to load users", "error"));
@@ -18,7 +18,7 @@ const ManageUsers = () => {
 
   // Update user role
   const updateUserRole = (id, role) => {
-    fetch(`https://assignment-12-xi-neon.vercel.app/users/${id}`, {
+    fetch(`http://localhost:5000/users/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ role }),
@@ -44,7 +44,7 @@ const ManageUsers = () => {
       confirmButtonText: "Yes, delete user",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://assignment-12-xi-neon.vercel.app/users/${id}`, {
+        fetch(`http://localhost:5000/users/${id}`, {
           method: "DELETE",
         })
           .then((res) => {

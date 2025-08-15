@@ -9,7 +9,7 @@ const ManageRequests = () => {
 
 useEffect(() => {
   if (user?.email) {
-    axios.get(`https://assignment-12-xi-neon.vercel.app/api/requests?charityEmail=${user.email}`)
+    axios.get(`http://localhost:5000/api/requests?charityEmail=${user.email}`)
       .then(res => setRequests(res.data))
       .catch(err => console.error(err));
   }
@@ -19,7 +19,7 @@ useEffect(() => {
     
 
     try {
-      await axios.delete(`https://assignment-12-xi-neon.vercel.app/api/requests/${id}`);
+      await axios.delete(`http://localhost:5000/api/requests/${id}`);
       setRequests(prev => prev.filter(req => req._id !== id));
     } catch (err) {
       console.error(err);

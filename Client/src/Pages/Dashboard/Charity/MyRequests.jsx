@@ -56,7 +56,7 @@ const MyRequests = () => {
       <h2 className="text-2xl font-bold mb-4">My Donation Requests</h2>
       <div className="grid gap-4">
         {requests.map((req) => (
-          <div key={req._id} className="border rounded p-4 shadow bg-white">
+          <div key={req._id} className="border rounded p-4 shadow ">
             <h3 className="text-xl font-semibold mb-1">{req.donationTitle}</h3>
             <p><strong>Restaurant:</strong> {req.restaurantName}</p>
             <p><strong>Food Type:</strong> {req.foodType || "N/A"}</p>

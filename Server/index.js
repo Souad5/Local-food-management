@@ -14,8 +14,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://assignment-12-ph-b12.web.app",
-    "https://assignment-12-ph-b12.firebaseapp.com", // ✅ Add this too for safety
-
+  "https://assignment-12-ph-b12.firebaseapp.com", // ✅ Add this too for safety
 ];
 
 app.use(
@@ -32,8 +31,6 @@ app.use(
 );
 
 app.use(express.json());
-
-
 
 // -------------------- MongoDB Connection --------------------
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.0evfqhu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
@@ -922,6 +919,77 @@ async function run() {
         res.status(500).json({ message: "Server error" });
       }
     });
+
+ // -------------------- Dashboard Stats --------------------
+// /api/dashboard/stats?userEmail=<email>
+app.get("/api/dashboard/stats", async (req, res) => {
+  try {
+    const userEmail = req.query.userEmail;
+    if (!userEmail) return res.status(400).json({ success: false, message: "User email required" });
+
+    // Count favorites of this user
+    const userFavoritesCount = await favoritesCollection.countDocuments({ userEmail });
+
+    // Count reviews by this user
+    const userReviewsCount = await reviewsCollection.countDocuments({ userEmail });
+
+    // Check if user has any charity role request
+    const userCharityRequests = await requestsCollection.find({ userEmail }).toArray();
+    const hasCharityRequest = userCharityRequests.length > 0;
+
+    const stats = {
+      totalFavorites: userFavoritesCount,
+      totalReviews: userReviewsCount,
+      hasCharityRequest,
+    };
+
+    res.status(200).json({ success: true, stats });
+  } catch (error) {
+    console.error("Error fetching user dashboard stats:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch stats" });
+  }
+});
+
+
+// /api/admin/dashboard/stats
+// Admin Dashboard Stats
+app.get("/api/admin/dashboard/stats", async (req, res) => {
+  try {
+    const db = client.db("Assignment-12");
+    const donationsCollection = db.collection("donations");
+    const featuredCollection = db.collection("featuredDonations");
+    const usersCollection = db.collection("users");
+    const requestsCollection = db.collection("requests");
+    const charityRequestsCollection = db.collection("charityRoleRequests");
+
+    // Count total donations
+    const totalDonations = await donationsCollection.countDocuments();
+    // Count total users
+    const totalUsers = await usersCollection.countDocuments();
+
+    // Count total role requests (general requests + charity role requests if needed)
+    const totalRequests = await requestsCollection.countDocuments();
+    const totalCharityRequests = await charityRequestsCollection.countDocuments();
+    const totalRoleRequests = totalRequests + totalCharityRequests;
+
+    // Count featured donations
+    const totalFeaturedDonations = await featuredCollection.countDocuments();
+
+    // Prepare stats object
+    const stats = {
+      totalDonations,
+      totalUsers,
+      totalRoleRequests,
+      totalFeaturedDonations,
+    };
+
+    res.status(200).json({ success: true, stats });
+  } catch (error) {
+    console.error("Error fetching admin stats:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch stats" });
+  }
+});
+
 
     // -------------------- Start Server --------------------
     const port = process.env.PORT || 5000;

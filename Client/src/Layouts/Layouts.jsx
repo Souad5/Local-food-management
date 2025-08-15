@@ -37,6 +37,8 @@ import Success from "../Pages/Dashboard/Users/Success";
 import PrivateRoute from "../Context/PrivateRoute";
 import Fav from "../Pages/Dashboard/Users/Fav";
 import ReChart from "../Pages/Dashboard/Restaurants/ReChart";
+import Overview from "../Pages/Dashboard/Users/OverView";
+import AdminOverview from "../Pages/Dashboard/Admin/OverView";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +78,10 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path:"my-profile",
+        element:<MyProfile/>
+      }
     ],
   },
   {
@@ -131,6 +137,10 @@ const router = createBrowserRouter([
             path: "transactions",
             element: <TransactionHistory />,
           },
+          {
+            path:"over-view",
+            element: <Overview/>
+          }
         ],
       },
       {
@@ -227,6 +237,10 @@ const router = createBrowserRouter([
             path: "feature-donations",
             element: <FeatureDonations />,
           },
+          {
+            path: "over-view-admin",
+            element:<AdminOverview/>
+          }
         ],
       },
       {

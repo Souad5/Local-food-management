@@ -4,36 +4,28 @@ import { toast } from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
 import { imageUpload, saveUserInDb } from '../Api/Utilis'
 import useAuth from './UseAuth'
+import { useState } from 'react'
+
 const Register = () => {
   const { createUser, updateUserProfile, signInWithGoogle, loading } = useAuth()
   const navigate = useNavigate()
-  // form submit handler
+  const [preview, setPreview] = useState(null)
+
   const handleSubmit = async event => {
     event.preventDefault()
     const form = event.target
     const name = form.name.value
     const email = form.email.value
     const password = form.password.value
-
     const image = form?.image?.files[0]
 
-    // image url response from imgbb
     const imageUrl = await imageUpload(image)
 
     try {
-      //2. User Registration
       const result = await createUser(email, password)
-
-      //3. Save username & profile photo
       await updateUserProfile(name, imageUrl)
-      console.log(result)
 
-      const userData = {
-        name,
-        email,
-        image: imageUrl,
-      }
-      // Save user data in db
+      const userData = { name, email, image: imageUrl }
       await saveUserInDb(userData)
 
       navigate('/')
@@ -44,10 +36,8 @@ const Register = () => {
     }
   }
 
-  // Handle Google Signin
   const handleGoogleSignIn = async () => {
     try {
-      //User Registration using google
       const result = await signInWithGoogle()
       const userData = {
         name: result?.user?.displayName,
@@ -62,114 +52,106 @@ const Register = () => {
       toast.error(err?.message)
     }
   }
+
   return (
-    <div className='flex justify-center items-center min-h-screen bg-white'>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
-        <div className='mb-8 text-center'>
-          <h1 className='my-3 text-4xl font-bold'>Register</h1>
-          <p className='text-sm text-gray-400'>Welcome to register page</p>
+    <div className="flex justify-center items-center min-h-screen p-4">
+      <div className="w-full max-w-lg p-8 rounded-2xl shadow-2xl backdrop-blur-md  border border-gray-200">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold ">Create Account</h1>
+          <p className="text-gray-50 mt-1">Join us and start your journey</p>
         </div>
-        <form
-          onSubmit={handleSubmit}
-          noValidate=''
-          action=''
-          className='space-y-6 ng-untouched ng-pristine ng-valid'
-        >
-          <div className='space-y-4'>
-            <div>
-              <label htmlFor='email' className='block mb-2 text-sm'>
-                Name
-              </label>
-              <input
-                type='text'
-                name='name'
-                id='name'
-                placeholder='Enter Your Name Here'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900'
-                data-temp-mail-org='0'
-              />
-            </div>
-            <div>
-              <label htmlFor='image' className='block mb-2 text-sm'>
-                Select Image:
-              </label>
-              <input
-                className='bg-gray-200 cursor-pointer'
-                type='file'
-                id='image'
-                name='image'
-                accept='image/*'
-              />
-            </div>
-            <div>
-              <label htmlFor='email' className='block mb-2 text-sm'>
-                Email address
-              </label>
-              <input
-                type='email'
-                name='email'
-                id='email'
-                required
-                placeholder='Enter Your Email Here'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900'
-                data-temp-mail-org='0'
-              />
-            </div>
-            <div>
-              <div className='flex justify-between'>
-                <label htmlFor='password' className='text-sm mb-2'>
-                  Password
-                </label>
-              </div>
-              <input
-                type='password'
-                name='password'
-                autoComplete='new-password'
-                id='password'
-                required
-                placeholder='*******'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900'
-              />
-            </div>
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Name */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Name</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="John Doe"
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-lime-400 "
+              required
+            />
           </div>
 
+          {/* Image Upload */}
           <div>
-            <button
-              type='submit'
-              className='bg-lime-500 w-full rounded-md py-3 text-white'
-            >
-              {loading ? (
-                <TbFidgetSpinner className='animate-spin m-auto' />
-              ) : (
-                'Continue'
-              )}
-            </button>
+            <label className="block text-sm font-medium mb-1">Profile Picture</label>
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={(e) => {
+                if (e.target.files[0]) {
+                  setPreview(URL.createObjectURL(e.target.files[0]))
+                }
+              }}
+              className="w-full text-sm cursor-pointer"
+            />
+            {preview && (
+              <img
+                src={preview}
+                alt="Preview"
+                className="w-20 h-20 object-cover rounded-full mt-2 border "
+              />
+            )}
           </div>
+
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="you@example.com"
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-lime-400 "
+              required
+            />
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="********"
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-lime-400 "
+              required
+            />
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full py-3 rounded-lg bg-lime-500 text-white font-semibold hover:bg-lime-600 transition-all duration-300 cursor-pointer"
+          >
+            {loading ? <TbFidgetSpinner className="animate-spin mx-auto cursor-pointer" /> : 'Sign Up'}
+          </button>
         </form>
-        <div className='flex items-center pt-4 space-x-1'>
-          <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-          <p className='px-3 text-sm dark:text-gray-400'>
-            Signup with social accounts
-          </p>
-          <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-2 my-6">
+          <div className="flex-1 h-px bg-gray-300"></div>
+          <span className="text-gray-500 text-sm">or</span>
+          <div className="flex-1 h-px bg-gray-300"></div>
         </div>
+
+        {/* Google Sign In */}
         <div
           onClick={handleGoogleSignIn}
-          className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
+          className="flex justify-center items-center gap-2 border  py-2 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-black transition-all duration-300"
         >
-          <FcGoogle size={32} />
-
-          <p>Continue with Google</p>
+          <FcGoogle size={28} />
+          <span className="font-medium cursor-pointer">Continue with Google</span>
         </div>
-        <p className='px-6 text-sm text-center text-gray-400'>
+
+        {/* Link to Login */}
+        <p className="text-center text-sm text-gray-500 mt-6">
           Already have an account?{' '}
-          <Link
-            to='/login'
-            className='hover:underline hover:text-lime-500 text-gray-600'
-          >
-            Login
+          <Link to="/login" className="text-lime-600 hover:underline">
+            Log in
           </Link>
-          .
         </p>
       </div>
     </div>

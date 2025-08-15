@@ -11,7 +11,7 @@ const MyDonations = () => {
   const { data: donations = [], refetch } = useQuery({
     queryKey: ["myDonations", user?.email],
     queryFn: async () => {
-      const res = await axios.get(`https://assignment-12-xi-neon.vercel.app/donations/res?email=${user.email}`
+      const res = await axios.get(`http://localhost:5000/donations/res?email=${user.email}`
 
       );
       return res.data;
@@ -22,7 +22,7 @@ const MyDonations = () => {
   const handleDelete = async (id) => {
   const confirm = window.confirm("Are you sure you want to delete this donation?");
   if (!confirm) return;
-  await axios.delete(`https://assignment-12-xi-neon.vercel.app/donations/${id}`);
+  await axios.delete(`http://localhost:5000/donations/${id}`);
   refetch();
 };
 
@@ -38,7 +38,7 @@ const MyDonations = () => {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     await axios.patch(
-      `https://assignment-12-xi-neon.vercel.app/donations/${selectedDonation._id}`,
+      `http://localhost:5000/donations/${selectedDonation._id}`,
       formData
     );
     document.getElementById("update_modal").close();
@@ -50,7 +50,7 @@ const MyDonations = () => {
       <h2 className="text-2xl font-bold mb-5">My Donations</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {donations.map((d) => (
-          <div key={d._id} className="border p-4 rounded bg-white">
+          <div key={d._id} className="border p-4 rounded ">
             <img src={d.image} alt={d.title} className="h-40 w-full object-cover rounded" />
             <h3 className="font-bold text-lg mt-2">{d.title}</h3>
             <p>Type: {d.type}</p>

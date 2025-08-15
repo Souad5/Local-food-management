@@ -69,7 +69,7 @@ const ReceivedDonations = () => {
   return (
     <div className="p-4 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
       {donations.map((d) => (
-        <div key={d._id} className="border p-4 rounded-xl shadow bg-white">
+        <div key={d._id} className="border p-4 rounded-xl shadow ">
           <h2 className="font-bold text-lg">{d.donationTitle}</h2>
           <p><strong>Restaurant:</strong> {d.restaurantName || "N/A"}</p>
           <p><strong>Food Type:</strong> {d.foodType || "N/A"}</p>
@@ -90,7 +90,7 @@ const ReceivedDonations = () => {
       {/* Unified Review Dialog */}
       <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="fixed z-50 inset-0 overflow-y-auto">
         <div className="flex items-center justify-center min-h-screen px-4">
-          <DialogPanel className="bg-white w-full max-w-md rounded-lg shadow-lg p-6">
+          <DialogPanel className=" w-full max-w-md rounded-lg shadow-lg p-6">
             <DialogTitle className="text-lg font-semibold mb-2">
               Add Review
             </DialogTitle>
