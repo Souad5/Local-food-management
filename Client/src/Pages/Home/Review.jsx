@@ -33,7 +33,7 @@ const ReviewCard = ({ review }) => (
 );
 
 const ReviewsMarquee = () => (
-  <section className="py-16 ">
+  <section className="py-16 max-w-7xl mx-auto rounded-2xl">
     <h2 className="text-3xl font-bold text-center  mb-8">
       ⭐ What People Say
     </h2>
