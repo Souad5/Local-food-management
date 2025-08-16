@@ -7,6 +7,7 @@ import Contact from "./Contact";
 import DashboardCount from "./DashboardCount";
 import Reviews from "./Review";
 import Subscribe from "./Subscribe";
+import Service from "./Service";
 
 const Home = () => {
   return (
@@ -19,7 +20,9 @@ const Home = () => {
         <Contact />
         <DashboardCount />
         <Reviews/>
+        <Service/>
         <Subscribe/>
+
       </div>
     </div>
   );
