@@ -97,7 +97,7 @@ const Login = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3 bg-lime-500 hover:bg-lime-600 font-semibold rounded-lg shadow-lg transition-colors duration-300"
+            className="w-full py-3 bg-lime-500 hover:bg-lime-600 font-semibold rounded-lg shadow-lg transition-colors duration-300 cursor-pointer"
           >
             {loading ? (
               <TbFidgetSpinner className="animate-spin m-auto" size={24} />
@@ -117,7 +117,7 @@ const Login = () => {
         {/* Google Login */}
         <button
           onClick={handleGoogleSignIn}
-          className="w-full flex items-center justify-center gap-3 py-2.5 border  rounded-lg transition-all duration-300"
+          className="w-full flex items-center justify-center gap-3 py-2.5 border  rounded-lg transition-all duration-300 cursor-pointer"
         >
           <FcGoogle size={24} />
           <span className=" font-medium">Continue with Google</span>
