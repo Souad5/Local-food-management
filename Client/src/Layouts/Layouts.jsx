@@ -41,6 +41,7 @@ import Overview from "../Pages/Dashboard/Users/OverView";
 import AdminOverview from "../Pages/Dashboard/Admin/OverView";
 import About from "../Pages/Home/About";
 import Contact from "../Pages/Home/Contact";
+import Profiles from "../Pages/Home/Profiles";
 
 const router = createBrowserRouter([
   {
@@ -81,8 +82,8 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "profile",
-        element: <MyProfile />,
+        path: "profiles",
+        element:<PrivateRoute><Profiles/></PrivateRoute> ,
       },
       {
         path: "about",
@@ -138,19 +139,19 @@ const router = createBrowserRouter([
           },
           {
             path: "favorites",
-            element: <Fav />,
+            element: <PrivateRoute><Fav /></PrivateRoute>,
           },
           {
             path: "reviews",
-            element: <MyReviews />,
+            element: <PrivateRoute><MyReviews /></PrivateRoute>,
           },
           {
             path: "transactions",
-            element: <TransactionHistory />,
+            element: <PrivateRoute><TransactionHistory /></PrivateRoute>,
           },
           {
             path: "over-view",
-            element: <Overview />,
+            element: <PrivateRoute><Overview /></PrivateRoute>,
           },
         ],
       },

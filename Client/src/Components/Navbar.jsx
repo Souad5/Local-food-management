@@ -56,7 +56,7 @@ const Navbar = () => {
             </NavLink>
             {user ? (
               <>
-              <NavLink to="/profile" className={navLinkStyle}>
+              <NavLink to="/profiles" className={navLinkStyle}>
                 My Profile
               </NavLink>
               <NavLink to="/dashboard" className={navLinkStyle}>
