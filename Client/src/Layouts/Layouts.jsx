@@ -242,23 +242,23 @@ const router = createBrowserRouter([
           },
           {
             path: "manage-users",
-            element: <ManageUsers />,
+            element:<PrivateRoute><ManageUsers /></PrivateRoute> ,
           },
           {
             path: "manage-role-requests",
-            element: <ManageRoleRequests />,
+            element: <PrivateRoute><ManageRoleRequests /></PrivateRoute>,
           },
           {
             path: "manage-requests",
-            element: <ManageRequests />,
+            element:<PrivateRoute><ManageRequests /></PrivateRoute> ,
           },
           {
             path: "feature-donations",
-            element: <FeatureDonations />,
+            element: <PrivateRoute><FeatureDonations /></PrivateRoute>,
           },
           {
             path: "over-view-admin",
-            element: <AdminOverview />,
+            element:<PrivateRoute><AdminOverview /></PrivateRoute> ,
           },
         ],
       },
