@@ -13,7 +13,7 @@ const Favorites = () => {
     const fetchFavorites = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/favorites?userEmail=${user.email}`
+          `https://assignment-12-xi-neon.vercel.app/api/favorites?userEmail=${user.email}`
         );
         setFavorites(res.data);
       } catch (err) {
@@ -28,7 +28,7 @@ const Favorites = () => {
   const handleRemove = async (id) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/favorites/${id}`
+        `https://assignment-12-xi-neon.vercel.app/api/favorites/${id}`
       );
       setFavorites(favorites.filter((fav) => fav._id !== id));
     } catch (err) {
@@ -46,7 +46,7 @@ const Favorites = () => {
 
   if (favorites.length === 0) {
     return (
-      <p className="text-center mt-20 text-gray-500 dark:text-gray-400 text-lg">
+      <p className="text-center mt-20 text-lg">
         No favorite donations yet.
       </p>
     );
@@ -57,7 +57,7 @@ const Favorites = () => {
       {favorites.map((fav) => (
         <div
           key={fav._id}
-          className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 flex flex-col justify-between transition-transform hover:scale-105"
+          className="  rounded-xl shadow-md p-4 flex flex-col justify-between transition-transform hover:scale-105 border"
         >
           <img
             src={fav.image}
@@ -66,18 +66,18 @@ const Favorites = () => {
           />
           <div className="space-y-2 flex-1">
             <h2 className="text-xl font-semibold">{fav.donationTitle}</h2>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="">
               {fav.restaurantName}, {fav.location}
             </p>
             <p>
               Status:{" "}
-              <span className="font-medium text-blue-600 dark:text-blue-400">
+              <span className="font-medium ">
                 {fav.status}
               </span>
             </p>
             <p>
               Quantity:{" "}
-              <span className="font-medium text-green-600 dark:text-green-400">
+              <span className="font-medium ">
                 {fav.quantity}
               </span>
             </p>

@@ -9,7 +9,7 @@ const FeatureDonations = () => {
   useEffect(() => {
     const fetchVerifiedDonations = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/verified-donations");
+        const res = await axios.get("https://assignment-12-xi-neon.vercel.app/verified-donations");
         setDonations(res.data);
       } catch (error) {
         console.error("Error fetching donations:", error);
@@ -20,7 +20,7 @@ const FeatureDonations = () => {
 
   const handleFeature = async (donation) => {
     try {
-      await axios.post("http://localhost:5000/featured-donations", donation);
+      await axios.post("https://assignment-12-xi-neon.vercel.app/featured-donations", donation);
       toast.success("Donation featured successfully!");
       setDonations((prev) =>
         prev.map((d) =>

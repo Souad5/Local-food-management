@@ -18,7 +18,7 @@ const Overview = () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/dashboard/stats?userEmail=${user.email}`
+          `https://assignment-12-xi-neon.vercel.app/api/dashboard/stats?userEmail=${user.email}`
         );
         if (res.data.success) {
           setStats(res.data.stats);
@@ -46,15 +46,15 @@ const Overview = () => {
       <h1 className="text-2xl font-bold mb-6 text-center">Dashboard Overview</h1>
 
       <div className="grid md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-gray-800 rounded-xl shadow p-4 text-center">
+        <div className=" rounded-xl shadow p-4 text-center border">
           <h2 className="text-lg font-semibold">Favorites</h2>
           <p className="text-3xl font-bold">{stats.totalFavorites}</p>
         </div>
-        <div className="bg-gray-800 rounded-xl shadow p-4 text-center">
+        <div className=" rounded-xl shadow p-4 text-center border">
           <h2 className="text-lg font-semibold">Reviews</h2>
           <p className="text-3xl font-bold">{stats.totalReviews}</p>
         </div>
-        <div className="bg-gray-800 rounded-xl shadow p-4 text-center">
+        <div className=" rounded-xl shadow p-4 text-center border">
           <h2 className="text-lg font-semibold">Charity Requests</h2>
           <p className="text-3xl font-bold">
             {stats.hasCharityRequest ? "Yes" : "No"}
@@ -62,7 +62,7 @@ const Overview = () => {
         </div>
       </div>
 
-      <div className="bg-gray-800 rounded-xl shadow p-4">
+      <div className="border rounded-xl shadow p-4">
         <h2 className="text-lg font-semibold mb-4 text-center">Stats Pie Chart</h2>
         <PieChart width={400} height={300}>
           <Pie

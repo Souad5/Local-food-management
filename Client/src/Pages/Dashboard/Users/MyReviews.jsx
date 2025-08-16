@@ -15,7 +15,7 @@ const MyReviews = () => {
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/api/reviews?userEmail=${user.email}`
+        `https://assignment-12-xi-neon.vercel.app/api/reviews?userEmail=${user.email}`
       );
       return res.data;
     },
@@ -25,7 +25,7 @@ const MyReviews = () => {
   const deleteMutation = useMutation({
     mutationFn: async (id) =>
       await axios.delete(
-        `http://localhost:5000/api/reviews/${id}`
+        `https://assignment-12-xi-neon.vercel.app/api/reviews/${id}`
       ),
     onSuccess: () => {
       toast.success("Review deleted!");
@@ -45,7 +45,7 @@ const MyReviews = () => {
 
   if (!reviews || reviews.length === 0)
     return (
-      <p className="text-center mt-20 text-gray-500 dark:text-gray-400 text-lg">
+      <p className="text-center mt-20  text-lg">
         You haven't submitted any reviews yet.
       </p>
     );
@@ -57,14 +57,14 @@ const MyReviews = () => {
         {reviews.map((review) => (
           <div
             key={review._id}
-            className="p-4 bg-white dark:bg-gray-800 shadow rounded-xl flex flex-col justify-between transition-transform hover:scale-105"
+            className="p-4  shadow rounded-xl flex flex-col justify-between transition-transform hover:scale-105 border"
           >
             <div className="space-y-2">
               <h3 className="text-xl font-semibold">{review.donationTitle}</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className=" ">
                 Restaurant: {review.restaurantName}
               </p>
-              <p className="text-gray-500 dark:text-gray-400 text-sm">
+              <p className="text-gray-500  text-sm">
                 Review Time: {new Date(review.time).toLocaleString()}
               </p>
               <p className="mt-2">{review.description}</p>

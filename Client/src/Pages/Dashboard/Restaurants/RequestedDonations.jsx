@@ -12,7 +12,7 @@ const RequestedDonations = () => {
     if (user?.email) {
       axios
         .get(
-          `http://localhost:5000/api/restaurant/requests?restaurantEmail=${user.email}`
+          `https://assignment-12-xi-neon.vercel.app/api/restaurant/requests?restaurantEmail=${user.email}`
         )
         .then((res) => setRequests(res.data))
         .catch((err) => {
@@ -27,7 +27,7 @@ const RequestedDonations = () => {
 
   const handleAccept = async (id) => {
     try {
-      await axios.patch(`http://localhost:5000/api/requests/accept/${id}`);
+      await axios.patch(`https://assignment-12-xi-neon.vercel.app/api/requests/accept/${id}`);
 
       setRequests((prev) =>
         prev.map((req) =>
@@ -41,7 +41,7 @@ const RequestedDonations = () => {
 
   const handleReject = async (id) => {
     try {
-      await axios.patch(`http://localhost:5000/api/requests/reject/${id}`);
+      await axios.patch(`https://assignment-12-xi-neon.vercel.app/api/requests/reject/${id}`);
       setRequests((prev) =>
         prev.map((req) =>
           req._id === id ? { ...req, status: "Rejected" } : req

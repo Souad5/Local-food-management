@@ -39,6 +39,8 @@ import Fav from "../Pages/Dashboard/Users/Fav";
 import ReChart from "../Pages/Dashboard/Restaurants/ReChart";
 import Overview from "../Pages/Dashboard/Users/OverView";
 import AdminOverview from "../Pages/Dashboard/Admin/OverView";
+import About from "../Pages/Home/About";
+import Contact from "../Pages/Home/Contact";
 
 const router = createBrowserRouter([
   {
@@ -79,9 +81,17 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:"my-profile",
-        element:<MyProfile/>
-      }
+        path: "profile",
+        element: <MyProfile />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
     ],
   },
   {
@@ -100,6 +110,7 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      
       {
         path: "users",
         element: (
@@ -121,7 +132,7 @@ const router = createBrowserRouter([
             path: "request-charity",
             element: (
               <PrivateRoute>
-                  <RequestCharityRole />
+                <RequestCharityRole />
               </PrivateRoute>
             ),
           },
@@ -138,9 +149,9 @@ const router = createBrowserRouter([
             element: <TransactionHistory />,
           },
           {
-            path:"over-view",
-            element: <Overview/>
-          }
+            path: "over-view",
+            element: <Overview />,
+          },
         ],
       },
       {
@@ -162,21 +173,28 @@ const router = createBrowserRouter([
           },
           {
             path: "my-donations",
-            element: <PrivateRoute><MyDonations /></PrivateRoute>,
+            element: (
+              <PrivateRoute>
+                <MyDonations />
+              </PrivateRoute>
+            ),
           },
           {
             path: "requests",
-            element: <PrivateRoute><RequestedDonations /></PrivateRoute>,
+            element: (
+              <PrivateRoute>
+                <RequestedDonations />
+              </PrivateRoute>
+            ),
           },
           {
             path: "donation-charts",
             element: (
               <PrivateRoute>
-              <ReChart />
+                <ReChart />
               </PrivateRoute>
             ),
-
-          }
+          },
         ],
       },
       {
@@ -239,8 +257,8 @@ const router = createBrowserRouter([
           },
           {
             path: "over-view-admin",
-            element:<AdminOverview/>
-          }
+            element: <AdminOverview />,
+          },
         ],
       },
       {

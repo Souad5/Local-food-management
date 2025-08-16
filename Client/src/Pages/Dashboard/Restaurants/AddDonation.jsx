@@ -65,7 +65,7 @@ const AddDonation = () => {
         createdAt: new Date(),
       };
       // Save donation
-      await axios.post("http://localhost:5000/donations", donation);
+      await axios.post("https://assignment-12-xi-neon.vercel.app/donations", donation);
 
       toast.success("Donation added successfully!");
       setForm({

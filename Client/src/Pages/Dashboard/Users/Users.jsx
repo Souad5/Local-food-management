@@ -12,10 +12,10 @@ const UserDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div className="min-h-screen flex flex-col md:flex-row ">
       
       {/* Sidebar */}
-      <aside className="w-full md:w-64 bg-white dark:bg-gray-800 p-6 flex flex-col justify-between shadow-md md:sticky md:top-0 md:h-screen z-20">
+      <aside className="w-full md:w-64   p-6 flex flex-col justify-between shadow-md md:sticky md:top-0 md:h-screen z-20">
         <h2 className="font-bold text-xl mb-6 text-center">User Dashboard</h2>
         <nav className="flex flex-col gap-3">
           <NavLink

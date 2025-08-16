@@ -54,13 +54,13 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-lime-50 via-white to-lime-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 px-4">
-      <div className="w-full max-w-md bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl shadow-lg p-8 space-y-8 border border-gray-200 dark:border-gray-700">
+    <div className="flex justify-center items-center min-h-screen px-4">
+      <div className="w-full max-w-md /80  backdrop-blur-xl rounded-2xl shadow-lg p-8 space-y-8 border ">
         
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Log In</h1>
-          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+          <h1 className="text-4xl font-bold ">Log In</h1>
+          <p className="mt-2 text-sm ">
             Sign in to access your account
           </p>
         </div>
@@ -68,7 +68,7 @@ const Login = () => {
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label htmlFor="email" className="block mb-2 text-sm font-medium ">
               Email address
             </label>
             <input
@@ -77,11 +77,11 @@ const Login = () => {
               id="email"
               required
               placeholder="Enter your email"
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-lime-500 outline-none transition-all"
+              className="w-full px-4 py-2 rounded-lg border   focus:ring-2 focus:ring-lime-500 outline-none transition-all"
             />
           </div>
           <div>
-            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label htmlFor="password" className="block mb-2 text-sm font-medium ">
               Password
             </label>
             <input
@@ -90,14 +90,14 @@ const Login = () => {
               id="password"
               required
               placeholder="*******"
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-lime-500 outline-none transition-all"
+              className="w-full px-4 py-2 rounded-lg border  focus:ring-2 focus:ring-lime-500 outline-none transition-all"
             />
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3 bg-lime-500 hover:bg-lime-600 text-white font-semibold rounded-lg shadow-lg transition-colors duration-300"
+            className="w-full py-3 bg-lime-500 hover:bg-lime-600 font-semibold rounded-lg shadow-lg transition-colors duration-300"
           >
             {loading ? (
               <TbFidgetSpinner className="animate-spin m-auto" size={24} />
@@ -109,22 +109,22 @@ const Login = () => {
 
         {/* Divider */}
         <div className="flex items-center gap-4">
-          <div className="flex-1 h-px bg-gray-300 dark:bg-gray-700"></div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">OR</p>
-          <div className="flex-1 h-px bg-gray-300 dark:bg-gray-700"></div>
+          <div className="flex-1 h-px "></div>
+          <p className="text-sm ">OR</p>
+          <div className="flex-1 h-px "></div>
         </div>
 
         {/* Google Login */}
         <button
           onClick={handleGoogleSignIn}
-          className="w-full flex items-center justify-center gap-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
+          className="w-full flex items-center justify-center gap-3 py-2.5 border  rounded-lg transition-all duration-300"
         >
           <FcGoogle size={24} />
-          <span className="text-gray-700 dark:text-gray-300 font-medium">Continue with Google</span>
+          <span className=" font-medium">Continue with Google</span>
         </button>
 
         {/* Footer */}
-        <p className="text-center text-sm text-gray-500 dark:text-gray-400">
+        <p className="text-center text-sm ">
           Don&apos;t have an account?{" "}
           <Link
             to="/register"

@@ -10,23 +10,23 @@ import useRole from "../../Context/useRole";
 
 const DonationDetails = () => {
   const { id } = useParams();
-  const [role , isRoleLoading] = useRole();
+  const [role, isRoleLoading] = useRole();
   const { user } = useContext(AuthContext);
   const [showRequestModal, setShowRequestModal] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
-  
+
   const { data: donation = {}, refetch } = useQuery({
     queryKey: ["donation", id],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/donations/${id}`);
+      const res = await axios.get(`https://assignment-12-xi-neon.vercel.app/donations/${id}`);
       return res.data;
     },
   });
-  
+
   const { data: reviews = [] } = useQuery({
     queryKey: ["reviews", id],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/api/reviews/${id}`);
+      const res = await axios.get(`https://assignment-12-xi-neon.vercel.app/api/reviews/${id}`);
       return res.data;
     },
   });
@@ -34,7 +34,7 @@ const DonationDetails = () => {
   const handleFavorite = async () => {
     const token = localStorage.getItem("access-token");
     if (!token) return toast.error("Please login first");
-    
+
     const favoriteData = {
       donationId: donation._id,
       image: donation.image,
@@ -44,10 +44,10 @@ const DonationDetails = () => {
       status: donation.status,
       quantity: donation.quantity,
     };
-    
+
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/favorites",
+        "https://assignment-12-xi-neon.vercel.app/api/favorites",
         favoriteData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -57,11 +57,16 @@ const DonationDetails = () => {
       console.error("Error favoriting donation:", err);
     }
   };
-  if (isRoleLoading) return <div className="text-center mt-10 text-xl"><LoadingSpinner/></div>;
+  if (isRoleLoading)
+    return (
+      <div className="text-center mt-10 text-xl">
+        <LoadingSpinner />
+      </div>
+    );
 
   const handleConfirmPickup = async () => {
     try {
-      await axios.patch(`http://localhost:5000/donations/${id}`, {
+      await axios.patch(`https://assignment-12-xi-neon.vercel.app/donations/${id}`, {
         status: "Picked Up",
       });
       Swal.fire("Confirmed", "Pickup marked as complete", "success");
@@ -73,7 +78,7 @@ const DonationDetails = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-5">
+    <div className="max-w-4xl mx-auto py-20">
       <img
         src={donation.image}
         alt={donation.title}
@@ -98,9 +103,12 @@ const DonationDetails = () => {
       </p>
 
       <div className="mt-5 flex gap-3 flex-wrap">
-        <button onClick={handleFavorite} className="btn btn-success">
-          ❤️ Save to Favorites
+        <button onClick={handleFavorite} className="relative cursor-pointer inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter  rounded-lg group">
+          <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-green-500 rounded-full group-hover:w-96 group-hover:h-56"></span>
+          <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
+          <span className="relative ">❤️ Save to Favorites</span>
         </button>
+        
         {role === "Charity" && (
           <>
             <button
@@ -110,18 +118,20 @@ const DonationDetails = () => {
               Request Donation
             </button>
             {donation.status === "Accepted" && (
-              <button onClick={handleConfirmPickup} className="btn btn-info">
-                ✅ Confirm Pickup
-              </button>
+              <button onClick={handleConfirmPickup}  className="relative cursor-pointer inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter  rounded-lg group">
+          <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-green-500 rounded-full group-hover:w-96 group-hover:h-56"></span>
+          <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
+          <span className="relative ">✅ Confirm Pickup</span>
+        </button>
             )}
           </>
         )}
-        <button
-          onClick={() => setShowReviewModal(true)}
-          className="btn btn-warning"
-        >
-          ⭐ Add Review
+        <button onClick={() => setShowReviewModal(true)} className="relative inline-flex cursor-pointer items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter  rounded-lg group">
+          <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-green-500 rounded-full group-hover:w-96 group-hover:h-56"></span>
+          <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
+          <span className="relative ">⭐ Add Review</span>
         </button>
+        
       </div>
 
       {/* ⭐ Review Section */}
@@ -159,7 +169,7 @@ const DonationDetails = () => {
                   pickupTime: e.target.pickupTime.value,
                   status: "Pending",
                 };
-                await axios.post("http://localhost:5000/api/requests", data);
+                await axios.post("https://assignment-12-xi-neon.vercel.app/api/requests", data);
                 Swal.fire(
                   "Request Sent",
                   "Awaiting restaurant response",
@@ -233,7 +243,7 @@ const DonationDetails = () => {
                   rating: e.target.rating.value,
                   time: new Date(),
                 };
-                await axios.post("http://localhost:5000/api/reviews", data);
+                await axios.post("https://assignment-12-xi-neon.vercel.app/api/reviews", data);
                 Swal.fire(
                   "Thanks!",
                   "Your review has been submitted",

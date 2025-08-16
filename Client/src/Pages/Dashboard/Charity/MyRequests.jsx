@@ -14,7 +14,7 @@ const MyRequests = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/requests?charityEmail=${encodeURIComponent(user.email)}`,
+        `${import.meta.env.VITE_API_URL || "https://assignment-12-xi-neon.vercel.app"}/api/requests?charityEmail=${encodeURIComponent(user.email)}`,
         { withCredentials: true }
       );
       setRequests(Array.isArray(res.data) ? res.data : []);
@@ -31,7 +31,7 @@ const MyRequests = () => {
     if (!window.confirm("Are you sure you want to cancel this request?")) return;
     try {
       await axios.delete(
-        `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/requests/${id}`,
+        `${import.meta.env.VITE_API_URL || "https://assignment-12-xi-neon.vercel.app"}/api/requests/${id}`,
         { withCredentials: true }
       );
       toast.success("Request canceled");

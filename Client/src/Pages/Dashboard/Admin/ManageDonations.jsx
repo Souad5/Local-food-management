@@ -6,7 +6,7 @@ const ManageDonations = () => {
   const [donations, setDonations] = useState([]);
 
   const fetchDonations = () => {
-    fetch("http://localhost:5000/donations/all")
+    fetch("https://assignment-12-xi-neon.vercel.app/donations/all")
       .then((res) => res.json())
       .then((data) => setDonations(data));
   };
@@ -16,7 +16,7 @@ const ManageDonations = () => {
   }, []);
 
   const updateDonationStatus = (id, status) => {
-    fetch(`http://localhost:5000/donations/${id}`, {
+    fetch(`https://assignment-12-xi-neon.vercel.app/donations/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),

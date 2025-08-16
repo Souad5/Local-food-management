@@ -11,7 +11,7 @@ const MyDonations = () => {
   const { data: donations = [], refetch } = useQuery({
     queryKey: ["myDonations", user?.email],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/donations/res?email=${user.email}`
+      const res = await axios.get(`https://assignment-12-xi-neon.vercel.app/donations/res?email=${user.email}`
 
       );
       return res.data;
@@ -22,7 +22,7 @@ const MyDonations = () => {
   const handleDelete = async (id) => {
   const confirm = window.confirm("Are you sure you want to delete this donation?");
   if (!confirm) return;
-  await axios.delete(`http://localhost:5000/donations/${id}`);
+  await axios.delete(`https://assignment-12-xi-neon.vercel.app/donations/${id}`);
   refetch();
 };
 
@@ -38,7 +38,7 @@ const MyDonations = () => {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     await axios.patch(
-      `http://localhost:5000/donations/${selectedDonation._id}`,
+      `https://assignment-12-xi-neon.vercel.app/donations/${selectedDonation._id}`,
       formData
     );
     document.getElementById("update_modal").close();

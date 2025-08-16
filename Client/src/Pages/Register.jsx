@@ -140,7 +140,7 @@ const Register = () => {
         {/* Google Sign In */}
         <div
           onClick={handleGoogleSignIn}
-          className="flex justify-center items-center gap-2 border  py-2 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-black transition-all duration-300"
+          className="flex justify-center items-center gap-2 border  py-2 rounded-lg cursor-pointer hover:bg-gray-100 hover: transition-all duration-300"
         >
           <FcGoogle size={28} />
           <span className="font-medium cursor-pointer">Continue with Google</span>
