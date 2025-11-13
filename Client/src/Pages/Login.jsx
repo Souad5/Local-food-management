@@ -97,7 +97,7 @@ const Login = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3 bg-lime-500 hover:bg-lime-600 font-semibold rounded-lg shadow-lg transition-colors duration-300 cursor-pointer"
+            className="w-full py-3 bg-blue-500 hover:bg-blue-600 font-semibold rounded-lg shadow-lg transition-colors duration-300 cursor-pointer"
           >
             {loading ? (
               <TbFidgetSpinner className="animate-spin m-auto" size={24} />
@@ -128,7 +128,7 @@ const Login = () => {
           Don&apos;t have an account?{" "}
           <Link
             to="/register"
-            className="text-lime-600 hover:text-lime-500 font-semibold transition-colors"
+            className="text-blue-600 hover:text-blue-500 font-semibold transition-colors"
           >
             Sign up
           </Link>

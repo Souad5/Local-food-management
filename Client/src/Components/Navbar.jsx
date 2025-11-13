@@ -27,7 +27,7 @@ const Navbar = () => {
   const navLinkStyle = ({ isActive }) =>
     `px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
       isActive
-        ? "text-orange-500 shadow-sm"
+        ? "text-blue-900 shadow-sm"
         : "text-base-content  hover:text-primary hover:bg-primary/10"
     }`;
 

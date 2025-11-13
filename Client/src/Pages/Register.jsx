@@ -124,7 +124,7 @@ const Register = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3 rounded-lg bg-lime-500 text-white font-semibold hover:bg-lime-600 transition-all duration-300 cursor-pointer"
+            className="w-full py-3 rounded-lg bg-blue-500 text-white font-semibold hover:bg-blue-600 transition-all duration-300 cursor-pointer"
           >
             {loading ? <TbFidgetSpinner className="animate-spin mx-auto cursor-pointer" /> : 'Sign Up'}
           </button>
@@ -149,7 +149,7 @@ const Register = () => {
         {/* Link to Login */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Already have an account?{' '}
-          <Link to="/login" className="text-lime-600 hover:underline">
+          <Link to="/login" className="text-blue-600 hover:underline">
             Log in
           </Link>
         </p>
